@@ -48,7 +48,7 @@
                     android:textAlignment="center"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:text="The app automatically detects the current date but you can also choose it by yourself by clicking the pencil icon. after entering your birth date, the app automatically does the necessary calculations and shows the results on the last page."
+                    android:text="The app automatically detects the current date but you can also choose it by yourself by clicking the pencil icon. After entering your birth date, the app automatically does the necessary calculations and shows the results on the last page."
                     android:textColor="@color/white"
                     android:fontFamily="@font/anek_devanagar"
                     android:textSize="16dp">

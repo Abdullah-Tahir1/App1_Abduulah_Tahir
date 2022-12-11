@@ -26,7 +26,7 @@ class MainActivity2 : AppCompatActivity() {
         val wholeCurrentDate = findViewById<TextView>(R.id.currentDate)
         wholeCurrentDate.setText("$currentDate " + monthNames[currentMonth] + " $currentYear")
         val wholeBirthDate = findViewById<TextView>(R.id.birthDate)
-        wholeBirthDate.setText("$birthDate " + monthNames[birthMonth] + " $currentYear")
+        wholeBirthDate.setText("$birthDate " + monthNames[birthMonth] + " $birthYear")
         var monthDays = arrayOf(31,28,31,30,31,30,31,31,30,31,30,31)
         val months=findViewById<TextView>(R.id.months)
         var monthRatio = 4.34649122807017543859649
@@ -76,10 +76,10 @@ class MainActivity2 : AppCompatActivity() {
         days.text="You have lived :\n ${daysLived} days"
         minutes.text="You have lived :\n ${daysLived*1440} minutes"
         seconds.text="You have lived :\n ${1440*3600*daysLived.toLong()} seconds"
-        if (birthMonth > currentMonth){
+        if (birthMonth < currentMonth){
             years.text="You have lived :\n ${currentYear - birthYear-1} years"
         }
-        else if (birthMonth < currentMonth){
+        else if (birthMonth > currentMonth){
             years.text="You have lived :\n ${(currentYear - birthYear)} years"
         }
         else if (birthMonth == currentMonth){
