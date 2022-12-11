@@ -18,7 +18,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class MainActivity4 : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
     fun nextPage(Currentdate: Int,Currentmonth: Int,Currentyear:Int,Birthdate: Int,Birthmonth: Int,Birthyear:Int){
         val intent = Intent(this@MainActivity4,MainActivity2::class.java)
         intent.putExtra("CurrentDate",Currentdate)
@@ -29,7 +28,7 @@ class MainActivity4 : AppCompatActivity() {
         intent.putExtra("BirthYear",Birthyear)
         startActivity(intent)
     }
-    @SuppressLint("NewApi", "MissingInflatedId")
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main4)
