@@ -76,11 +76,11 @@ class MainActivity2 : AppCompatActivity() {
         days.text="You have lived :\n ${daysLived} days"
         minutes.text="You have lived :\n ${daysLived*1440} minutes"
         seconds.text="You have lived :\n ${1440*3600*daysLived.toLong()} seconds"
-        if (birthMonth < currentMonth){
-            years.text="You have lived :\n ${currentYear - birthYear-1} years"
+        if (currentMonth > birthMonth){
+            years.text="You have lived :\n ${currentYear - birthYear} years"
         }
         else if (birthMonth > currentMonth){
-            years.text="You have lived :\n ${(currentYear - birthYear)} years"
+            years.text="You have lived :\n ${(currentYear - birthYear)-1} years"
         }
         else if (birthMonth == currentMonth){
             if (birthDate < currentDate){

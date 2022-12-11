@@ -42,39 +42,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/datePlusBtnCurrentDate"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="270dp"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/monthPlusBtnCurrentDate"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="400dp"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/dateMinusBtnCurrentDate"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="270dp"
-        android:layout_marginEnd="55dp"
         android:text="-"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -82,9 +58,33 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="400dp"
+        android:text="-"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/datePlusBtnCurrentDate"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="55dp"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/monthPlusBtnCurrentDate"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:layout_marginEnd="55dp"
-        android:text="-"
+        android:text="+"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -109,7 +109,7 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
+        android:layout_marginStart="120dp"
         android:layout_marginBottom="110dp"
         android:fontFamily="@font/anek_devanagar"
         android:onClick="nextButton"

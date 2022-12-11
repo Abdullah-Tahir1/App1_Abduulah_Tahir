@@ -13,7 +13,6 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main3.*
 import android.widget.Toast
-import kotlinx.android.synthetic.main.custom_dialoug.*
 
 class MainActivity3 : AppCompatActivity() {
     fun nextPage(date: Int,month: Int,year:Int){
@@ -41,10 +40,10 @@ class MainActivity3 : AppCompatActivity() {
         var dayIncrement = 0
         val yearCounter = findViewById<EditText>(R.id.yearInputCurrentDate)
        //Calling Buttons by their IDs
-        val datePlusButton = findViewById<Button>(R.id.datePlusBtnCurrentDate)
         val dateMinusButton = findViewById<Button>(R.id.dateMinusBtnCurrentDate)
-        val monthPlusButton = findViewById<Button>(R.id.monthPlusBtnCurrentDate)
+        val datePlusButton = findViewById<Button>(R.id.datePlusBtnCurrentDate)
         val monthMinusButton = findViewById<Button>(R.id.monthMinusBtnCurrentDate)
+        val monthPlusButton = findViewById<Button>(R.id.monthPlusBtnCurrentDate)
         val ansBtn = findViewById<Button>(R.id.btnCurrentDate)
         //Calling Animations
         val fadeInFromLeftAnimation = AnimationUtils.loadAnimation(this,R.anim.fade_in_from_left)
@@ -52,22 +51,16 @@ class MainActivity3 : AppCompatActivity() {
         val FadeInFromDown = AnimationUtils.loadAnimation(this,R.anim.fade_in_from_down)
         val animationSlide = AnimationUtils.loadAnimation(this,R.anim.slide)
         //Starting Animation
-        datePlusButton.startAnimation(fadeInFromLeftAnimation)
-        dateMinusButton.startAnimation(fadeInFromRightAnimation)
-        monthPlusButton.startAnimation(fadeInFromLeftAnimation)
-        monthMinusButton.startAnimation(fadeInFromRightAnimation)
+        dateMinusButton.startAnimation(fadeInFromLeftAnimation)
+        datePlusButton.startAnimation(fadeInFromRightAnimation)
+        monthMinusButton.startAnimation(fadeInFromLeftAnimation)
+        monthPlusButton.startAnimation(fadeInFromRightAnimation)
         dateAnimation.startAnimation(FadeInFromDown)
         mont.startAnimation(FadeInFromDown)
         yearCounter.startAnimation(FadeInFromDown)
         underline.startAnimation(animationSlide)
         ansBtn.startAnimation(FadeInFromDown)
         //Date Plus Button Click Listener
-        datePlusBtnCurrentDate.setOnClickListener{
-            val dateCounter1 = findViewById<EditText>(R.id.dateInputCurrentDate)
-            dayIncrement = dateCounter1.text.toString().toInt()+1
-            dateCounter1.setText(dayIncrement.toString())
-        }
-        //Date Minus Button Click Listener
         dateMinusBtnCurrentDate.setOnClickListener{
             val dateCounter1 = findViewById<EditText>(R.id.dateInputCurrentDate)
             var dayDecrement = dateCounter1.text.toString().toInt()-1
@@ -75,23 +68,38 @@ class MainActivity3 : AppCompatActivity() {
             {
                 dateCounter1.setText(dayDecrement.toString())
             }
+            else if (dayDecrement < 1){
+                Toast.makeText(this, "Negative dates aren't allowed", Toast.LENGTH_SHORT).show()
+            }
+        }
+        //Date Minus Button Click Listener
+        datePlusBtnCurrentDate.setOnClickListener{
+            val dateCounter1 = findViewById<EditText>(R.id.dateInputCurrentDate)
+            var dayIncrement = dateCounter1.text.toString().toInt()+1
+            if (dayIncrement < 32)
+            {
+                dateCounter1.setText(dayIncrement.toString())
+            }
+            else if (dayIncrement > 31){
+                Toast.makeText(this, "Dates above 31 aren't allowed", Toast.LENGTH_SHORT).show()
+            }
         }
         //Month Plus Button Click Listener
-        monthPlusBtnCurrentDate.setOnClickListener{
-            i+=1
-            if (i > 11)
-            {
-                i = 0
-            }
-            var monthIncrement = months[i]
-            mont.setText(monthIncrement)
-        }
-        //Month Minus Button Click Listener
         monthMinusBtnCurrentDate.setOnClickListener{
             i-=1
             if (i < 0)
             {
                 i = 11
+            }
+            var monthIncrement = months[i]
+            mont.setText(monthIncrement)
+        }
+        //Month Minus Button Click Listener
+        monthPlusBtnCurrentDate.setOnClickListener{
+            i+=1
+            if (i > 11)
+            {
+                i = 0
             }
             var monthDecrement = months[i]
             mont.setText(monthDecrement)

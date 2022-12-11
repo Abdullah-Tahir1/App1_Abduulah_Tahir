@@ -29,7 +29,7 @@ class MainActivity4 : AppCompatActivity() {
         intent.putExtra("BirthYear",Birthyear)
         startActivity(intent)
     }
-    @SuppressLint("NewApi")
+    @SuppressLint("NewApi", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main4)
@@ -57,14 +57,14 @@ class MainActivity4 : AppCompatActivity() {
         var months = arrayOf("January","February","March","April","May","June","July","August","September","October","November","December")
         wholeCurrentDate.setText("$currentDate " + months[currentMonth] + " $currentYear")
         var i = -1
-        var dayIncrement = 0
+        //var dayIncrement = 0
         val yearCounter = findViewById<EditText>(R.id.yearInputBirthDate)
         var dialougChecker = intent.getIntExtra("dialougChecker",0)
         //Calling Buttons by their IDs
-        val datePlusButton = findViewById<Button>(R.id.datePlusBtnBirthDate)
         val dateMinusButton = findViewById<Button>(R.id.dateMinusBtnBirthDate)
-        val monthPlusButton = findViewById<Button>(R.id.monthPlusBtnBirthDate)
+        val datePlusButton = findViewById<Button>(R.id.datePlusBtnBirthDate)
         val monthMinusButton = findViewById<Button>(R.id.monthMinusBtnBirthDate)
+        val monthPlusButton = findViewById<Button>(R.id.monthPlusBtnBirthDate)
         val ansBtn = findViewById<Button>(R.id.btnBirthDate)
         //Calling Animations
         val fadeInFromLeftAnimation = AnimationUtils.loadAnimation(this,R.anim.fade_in_from_left)
@@ -72,10 +72,10 @@ class MainActivity4 : AppCompatActivity() {
         val FadeInFromDown = AnimationUtils.loadAnimation(this,R.anim.fade_in_from_down)
         val animationSlide = AnimationUtils.loadAnimation(this,R.anim.slide)
         //Starting Animation
-        datePlusButton.startAnimation(fadeInFromLeftAnimation)
-        dateMinusButton.startAnimation(fadeInFromRightAnimation)
-        monthPlusButton.startAnimation(fadeInFromLeftAnimation)
-        monthMinusButton.startAnimation(fadeInFromRightAnimation)
+        dateMinusButton.startAnimation(fadeInFromLeftAnimation)
+        datePlusButton.startAnimation(fadeInFromRightAnimation)
+        monthMinusButton.startAnimation(fadeInFromLeftAnimation)
+        monthPlusButton.startAnimation(fadeInFromRightAnimation)
         dateAnimation.startAnimation(FadeInFromDown)
         mont.startAnimation(FadeInFromDown)
         yearCounter.startAnimation(FadeInFromDown)
@@ -95,37 +95,46 @@ class MainActivity4 : AppCompatActivity() {
             startActivity(intent)
         }
         //Date Plus Button Click Listener
-        datePlusBtnBirthDate.setOnClickListener{
-           val dateCounter1 = findViewById<EditText>(R.id.dateInputBirthDate)
-           dayIncrement = dateCounter1.text.toString().toInt()+1
-           dateCounter1.setText(dayIncrement.toString())
-       }
-        //Date Minus Button Click Listener
         dateMinusBtnBirthDate.setOnClickListener{
            val dateCounter1 = findViewById<EditText>(R.id.dateInputBirthDate)
-           var dayDecrement = dateCounter1.text.toString().toInt()-1
-           if (dayDecrement > 0)
-           {
-               dateCounter1.setText(dayDecrement.toString())
-           }
-       }
+            var dayDecrement = dateCounter1.text.toString().toInt()-1
+            if (dayDecrement > 0)
+            {
+                dateCounter1.setText(dayDecrement.toString())
+            }
+            else if (dayDecrement < 1){
+                Toast.makeText(this, "Negative dates aren't allowed", Toast.LENGTH_SHORT).show()
+            }
+        }
+        //Date Minus Button Click Listener
+        datePlusBtnBirthDate.setOnClickListener{
+           val dateCounter1 = findViewById<EditText>(R.id.dateInputBirthDate)
+           var dayIncrement = dateCounter1.text.toString().toInt()+1
+            if (dayIncrement < 32)
+            {
+                dateCounter1.setText(dayIncrement.toString())
+            }
+            else if (dayIncrement > 31){
+                Toast.makeText(this, "Dates above 31 aren't allowed", Toast.LENGTH_SHORT).show()
+            }
+        }//dayIncrement
         //Month Plus Button Click Listener
-        monthPlusBtnBirthDate.setOnClickListener{
-           i+=1
-           if (i > 11)
-           {
-               i = 0
-           }
+        monthMinusBtnBirthDate.setOnClickListener{
+           i-=1
+            if (i < 0)
+            {
+                i = 11
+            }
            var monthIncrement = months[i]
            mont.setText(monthIncrement)
        }
         //Month Minus Button Click Listener
-        monthMinusBtnBirthDate.setOnClickListener{
-           i-=1
-           if (i < 0)
-           {
-               i = 11
-           }
+        monthPlusBtnBirthDate.setOnClickListener{
+           i+=1
+            if (i > 11)
+            {
+                i = 0
+            }
            var monthDecrement = months[i]
            mont.setText(monthDecrement)
        }
@@ -178,7 +187,6 @@ class MainActivity4 : AppCompatActivity() {
                nextPage(currentDate,currentMonth,currentYear,dateCounter2,i,yearCounter.text.toString().toInt())
 
            }
-           //Toast.makeText(this, "Selected item: ",Toast.LENGTH_LONG).show()
        }
     }
     fun displayDialoug(view: View){
